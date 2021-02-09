@@ -17,7 +17,10 @@ if (Session::has('user')) {
                     <a class="nav-link active" aria-current="page" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Orders</a>
+                    <a class="nav-link" href="/products">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/orderNow">Orders</a>
                 </li>
                 <form class="d-flex mx-5" action="/search">
                     <input class="form-control me-2 search-box" name="query"  placeholder="Search" aria-label="Search">

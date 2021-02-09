@@ -21,10 +21,10 @@
                         <a href="/removeCart/{{$item->cart_id}}" class="btn btn-danger btn-lg">Remove from Cart</a>
                     </div>
                 </div>
+                @endforeach
                 <div class="d-grid col-6 mx-auto">
                     <a class="btn btn-success btn-lg" href="/orderNow">Order now</a>
                 </div>
-                @endforeach
 {{--            @empty--}}
 {{--                <h3>No Products Found</h3>--}}
 {{--            @endforelse--}}

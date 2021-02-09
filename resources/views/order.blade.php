@@ -17,11 +17,11 @@
                 </tr>
                 <tr>
                     <td>Delivery Charges</td>
-                    <td>₹200</td>
+                    <td>₹{{$total==0?0:200}}</td>
                 </tr>
                 <tr>
                     <td>Total amount</td>
-                    <td>₹{{$total + 200 + ($total * 0.01)}}</td>
+                    <td>₹{{$total + ($total==0?0:200) + ($total * 0.01)}}</td>
                 </tr>
                 </tbody>
             </table>

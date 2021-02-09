@@ -23,7 +23,10 @@ Route::get('/logout', function () {
 });
 
 Route::post('/login', 'UserController@login');
-
+//Display all products
+Route::get('/products', function () {
+    return "Display Products";
+});
 //To get to the detail page of a product
 Route::get('/product/{id}', 'ProductController@product');
 //To get to the search page
