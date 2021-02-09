@@ -9,8 +9,8 @@
                     <div class="col-sm-3 d-flex align-items-stretch">
                         <div class="item-wrapper">
                             <div class="img-wrapper">
-                                <a class="button expanded add-to-cart" align="center">
-                                    Add to Cart
+                                <a class="button expanded add-to-cart" align="center" href="product/{{$item['id']}}">
+                                    View Item
                                 </a>
                                 <a href="#">
                                     <img class="img-trend" src="{{$item['image']}}"/>

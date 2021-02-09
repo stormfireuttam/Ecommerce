@@ -22,3 +22,5 @@ Route::post('/login', 'UserController@login');
 Route::get('/product/{id}', 'ProductController@product');
 //To get to the search page
 Route::get('/search', 'ProductController@search');
+//Route to add items to cart
+Route::post('/add_to_cart', 'ProductController@addToCart');
