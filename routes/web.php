@@ -17,4 +17,8 @@ Route::get('/login', function () {
     return view('login');
 });
 Route::post('/login', 'UserController@login');
+
+//To get to the detail page of a product
 Route::get('/product/{id}', 'ProductController@product');
+//To get to the search page
+Route::get('/search', 'ProductController@search');

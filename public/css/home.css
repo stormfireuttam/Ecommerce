@@ -1,7 +1,14 @@
 .img-detail {
     margin: 20px;
     height: 400px;
+    max-width: 400px;
+    image-resolution: inherit;
+    object-fit: contain;
 }
+.search-box {
+    width: 400px !important;
+}
+
 .detail-section {
     margin: 20px;
     border: 2px solid #efefef;
