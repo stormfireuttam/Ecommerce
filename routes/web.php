@@ -32,3 +32,5 @@ Route::get('/search', 'ProductController@search');
 Route::post('/add_to_cart', 'ProductController@addToCart');
 //Get the Cart List
 Route::get('/cartList', 'ProductController@getCartList');
+//Remove Product from Cart
+Route::get('/removeCart/{id}', 'ProductController@removeCart');
