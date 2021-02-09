@@ -14,75 +14,68 @@ class ProductSeeder extends Seeder
     {
         DB::table('products')->insert([
                 [
-                    'name'=>'Samsung Galaxy A51',
-                    'price'=>'20999',
-                    'description'=>'Haze Crush Silver, 6GB RAM, 128GB Storage',
-                    'category'=>'Mobile',
-                    'image'=>'https://images-na.ssl-images-amazon.com/images/I/81w61J-zDKL._SL1500_.jpg'
+                    'name'=>'Samsung TV',
+                    'price'=>'16290',
+                    'description'=>'80cm (32 Inches) Wondertainment Series HD Ready LED Smart TV (Glossy Black) ',
+                    'category'=>'TV',
+                    'image'=>'https://images-na.ssl-images-amazon.com/images/I/71fEd9glTIL._SL1500_.jpg'
                 ],
                 [
-                    'name'=>'Samsung Galaxy S21 Plus 5G',
-                    'price'=>'81999',
-                    'description'=>'Phantom Violet, 8GB, 128GB Storage',
-                    'category'=>'Mobile',
-                    'image'=>'https://images-na.ssl-images-amazon.com/images/I/91v6gUJghLL._SL1500_.jpg'
+                    'name'=>'OnePlus Y Series TV',
+                    'price'=>'15999',
+                    'description'=>'80cm (32 inches) HD Ready LED Smart Android TV 32Y1 (Black) ',
+                    'category'=>'TV',
+                    'image'=>'https://images-na.ssl-images-amazon.com/images/I/81qtALn%2BGpL._SL1500_.jpg'
                 ],
                 [
-                    'name'=>'Redmi Note 9 Pro',
-                    'price'=>'12999',
-                    'description'=>'Aurora Blue, 4GB RAM, 64GB Storage',
-                    'category'=>'Mobile',
-                    'image'=>'https://images-na.ssl-images-amazon.com/images/I/811axeBSeRL._SL1500_.jpg'
+                    'name'=>'Mi TV 4A PRO',
+                    'price'=>'14999',
+                    'description'=>'80 cm (32 inches) HD Ready Android LED TV (Black) | With Data Save',
+                    'category'=>'TV',
+                    'image'=>'https://images-na.ssl-images-amazon.com/images/I/71qOOWyfc7L._SL1500_.jpg'
                 ],
                 [
-                    'name'=>'Redmi 9 Power',
-                    'price'=>'10999',
-                    'description'=>'Mighty Black 4GB RAM 64GB Storage - 6000mAh Battery | 48MP Quad Camera',
-                    'category'=>'Mobile',
-                    'image'=>'https://images-na.ssl-images-amazon.com/images/I/71hEzQGO5qL._SL1500_.jpg'
+                    'name'=>'Samsung TV',
+                    'price'=>'16290',
+                    'description'=>'80cm (32 Inches) Wondertainment Series HD Ready LED Smart TV (Glossy Black) ',
+                    'category'=>'TV',
+                    'image'=>'https://images-na.ssl-images-amazon.com/images/I/71fEd9glTIL._SL1500_.jpg'
                 ],
                 [
-                    'name'=>'OnePlus Nord 5G',
-                    'price'=>'29999',
-                    'description'=>'Blue Marble, 12GB RAM, 256GB Storage',
-                    'category'=>'Mobile',
-                    'image'=>'https://images-na.ssl-images-amazon.com/images/I/71Lx9l3NivL._SL1500_.jpg'
+                    'name'=>'OnePlus Y Series TV',
+                    'price'=>'15999',
+                    'description'=>'80cm (32 inches) HD Ready LED Smart Android TV 32Y1 (Black) ',
+                    'category'=>'TV',
+                    'image'=>'https://images-na.ssl-images-amazon.com/images/I/81qtALn%2BGpL._SL1500_.jpg'
                 ],
                 [
-                    'name'=>'Samsung Galaxy A51',
-                    'price'=>'20999',
-                    'description'=>'Haze Crush Silver, 6GB RAM, 128GB Storage',
-                    'category'=>'Mobile',
-                    'image'=>'https://images-na.ssl-images-amazon.com/images/I/81w61J-zDKL._SL1500_.jpg'
+                    'name'=>'Mi TV 4A PRO',
+                    'price'=>'14999',
+                    'description'=>'80 cm (32 inches) HD Ready Android LED TV (Black) | With Data Save',
+                    'category'=>'TV',
+                    'image'=>'https://images-na.ssl-images-amazon.com/images/I/71qOOWyfc7L._SL1500_.jpg'
                 ],
                 [
-                    'name'=>'Samsung Galaxy S21 Plus 5G',
-                    'price'=>'81999',
-                    'description'=>'Phantom Violet, 8GB, 128GB Storage',
-                    'category'=>'Mobile',
-                    'image'=>'https://images-na.ssl-images-amazon.com/images/I/91v6gUJghLL._SL1500_.jpg'
+                    'name'=>'Samsung TV',
+                    'price'=>'16290',
+                    'description'=>'80cm (32 Inches) Wondertainment Series HD Ready LED Smart TV (Glossy Black) ',
+                    'category'=>'TV',
+                    'image'=>'https://images-na.ssl-images-amazon.com/images/I/71fEd9glTIL._SL1500_.jpg'
                 ],
                 [
-                    'name'=>'Redmi Note 9 Pro',
-                    'price'=>'12999',
-                    'description'=>'Aurora Blue, 4GB RAM, 64GB Storage',
-                    'category'=>'Mobile',
-                    'image'=>'https://images-na.ssl-images-amazon.com/images/I/811axeBSeRL._SL1500_.jpg'
+                    'name'=>'OnePlus Y Series TV',
+                    'price'=>'15999',
+                    'description'=>'80cm (32 inches) HD Ready LED Smart Android TV 32Y1 (Black) ',
+                    'category'=>'TV',
+                    'image'=>'https://images-na.ssl-images-amazon.com/images/I/81qtALn%2BGpL._SL1500_.jpg'
                 ],
                 [
-                    'name'=>'Redmi 9 Power',
-                    'price'=>'10999',
-                    'description'=>'Mighty Black 4GB RAM 64GB Storage - 6000mAh Battery | 48MP Quad Camera',
-                    'category'=>'Mobile',
-                    'image'=>'https://images-na.ssl-images-amazon.com/images/I/71hEzQGO5qL._SL1500_.jpg'
+                    'name'=>'Mi TV 4A PRO',
+                    'price'=>'14999',
+                    'description'=>'80 cm (32 inches) HD Ready Android LED TV (Black) | With Data Save',
+                    'category'=>'TV',
+                    'image'=>'https://images-na.ssl-images-amazon.com/images/I/71qOOWyfc7L._SL1500_.jpg'
                 ],
-                [
-                    'name'=>'OnePlus Nord 5G',
-                    'price'=>'29999',
-                    'description'=>'Blue Marble, 12GB RAM, 256GB Storage',
-                    'category'=>'Mobile',
-                    'image'=>'https://images-na.ssl-images-amazon.com/images/I/71Lx9l3NivL._SL1500_.jpg'
-                ]
             ]
         );
     }

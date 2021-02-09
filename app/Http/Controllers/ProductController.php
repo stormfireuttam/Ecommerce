@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Product;
 
 class ProductController extends Controller
 {
 
     public function index()
     {
-        return "Welcome to product page";
+        $data = Product::all();
+        $trun_data = Product::take(4)->get();
+        return view('product', compact('trun_data'));
     }
 //
 //    /**
