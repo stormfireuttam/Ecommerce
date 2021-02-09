@@ -18,8 +18,11 @@
                         </div>
                     </div>
                     <div class="col-sm-4 my-5">
-                        <a href="/removeCart/{{$item->cart_id}}" class="btn btn-danger">Remove from Cart</a>
+                        <a href="/removeCart/{{$item->cart_id}}" class="btn btn-danger btn-lg">Remove from Cart</a>
                     </div>
+                </div>
+                <div class="d-grid col-6 mx-auto">
+                    <a class="btn btn-success btn-lg" href="/orderNow">Order now</a>
                 </div>
                 @endforeach
 {{--            @empty--}}

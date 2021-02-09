@@ -34,3 +34,5 @@ Route::post('/add_to_cart', 'ProductController@addToCart');
 Route::get('/cartList', 'ProductController@getCartList');
 //Remove Product from Cart
 Route::get('/removeCart/{id}', 'ProductController@removeCart');
+//Order Now
+Route::get('/orderNow', 'ProductController@orderNow');
