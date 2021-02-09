@@ -10,7 +10,7 @@
         <br>
         <div class="trending-wrapper">
             <h2 align="center">Trending Products</h2>
-            <div class="row">
+            <div class="row mb-5">
                 @forelse($trun_data->chunk(4) as $chunk)
                     @foreach($chunk as $item)
                         <div class="col-sm-3 d-flex align-items-stretch">

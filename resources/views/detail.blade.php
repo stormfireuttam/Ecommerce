@@ -22,7 +22,7 @@
                         <input type="hidden" name="product_id" value="{{$product['id']}}">
                         <button class="btn btn-primary  px-3 m-2">Add to Cart</button>
                     </form>
-                    <button type="button" class="btn btn-success  px-3 m-2">Buy Now</button>
+{{--                    <button type="button" class="btn btn-success  px-3 m-2">Buy Now</button>--}}
                 </div>
             </div>
         </div>

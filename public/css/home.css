@@ -1,3 +1,14 @@
+.pagination {
+    display: block;
+    margin: auto;
+    align-self: center;
+}
+.pagination li{
+    display: inline;
+    background: #afd9ee;
+    padding: 10px;
+    border: 1px solid black;
+}
 .cart-image {
     height: 200px;
 }

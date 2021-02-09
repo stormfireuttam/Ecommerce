@@ -11,22 +11,35 @@
 |
 */
 
+
+use App\Product;
+
 Route::get('/', 'ProductController@index');
 
+//Login User
 Route::get('/login', function () {
     return view('login');
 });
+Route::post('/login', 'UserController@login');
+
+//Register Account
+Route::get('/register', function () {
+    return view('register');
+});
+Route::post('/register', 'UserController@register');
+
 //Logout the user
 Route::get('/logout', function () {
     Session::forget('user');
     return redirect('/');
 });
 
-Route::post('/login', 'UserController@login');
 //Display all products
-Route::get('/products', function () {
-    return "Display Products";
-});
+//Route::get('/products', function () {
+//    $data = Product::all();
+//     return view('products', compact('data'));
+//});
+Route::get('/products', 'ProductController@show');
 //To get to the detail page of a product
 Route::get('/product/{id}', 'ProductController@product');
 //To get to the search page
@@ -41,3 +54,5 @@ Route::get('/removeCart/{id}', 'ProductController@removeCart');
 Route::get('/orderNow', 'ProductController@orderNow');
 //Place Order
 Route::post('/placeOrder', 'ProductController@placeOrder');
+//View All Orders of a User
+Route::get('/myorders', 'ProductController@orders');

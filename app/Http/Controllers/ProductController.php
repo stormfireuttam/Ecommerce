@@ -14,8 +14,12 @@ class ProductController extends Controller
 
     public function index()
     {
-        $trun_data = Product::take(4)->get();
+        $trun_data = Product::take(8)->get();
         return view('product', compact('trun_data'));
+    }
+    public function show(){
+        $data = DB::table('products')->paginate(8);
+        return view('products', compact('data'));
     }
     public function product($id) {
         $product = Product::find($id);
@@ -75,9 +79,17 @@ class ProductController extends Controller
             $order->payment_status = 'Pending';
             $order->address =  $request->address;
             $order->save();
-            $allItems = Cart::where('user_id',$userId)->delete();
+            Cart::where('user_id',$userId)->delete();
         }
         $request->input();
         return redirect('/orderNow');
+    }
+    public function orders() {
+        $userId = Session::get('user')['id'];
+        $orders = DB::table('orders')
+            ->join('products','orders.product_id','=','products.id')
+            ->where('orders.user_id',$userId)
+            ->get();
+        return view('myorders', compact('orders'));
     }
 }
