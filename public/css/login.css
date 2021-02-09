@@ -45,6 +45,7 @@ html,body{
 
 .input-group-prepend span{
     width: 50px;
+    padding: 10px 0 10px 10px;
     background-color: #FFC312;
     color: black;
     border:0 !important;

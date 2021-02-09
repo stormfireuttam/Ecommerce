@@ -20,7 +20,7 @@
                                 <h3>{{$item->name}}</h3>
                             </a>
                             <h5>
-                                {{$item->price}}
+                                ₹{{$item->price}}
                             </h5>
                             <p>
                                 {{$item->description}}

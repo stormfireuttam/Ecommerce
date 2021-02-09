@@ -30,3 +30,5 @@ Route::get('/product/{id}', 'ProductController@product');
 Route::get('/search', 'ProductController@search');
 //Route to add items to cart
 Route::post('/add_to_cart', 'ProductController@addToCart');
+//Get the Cart List
+Route::get('/cartList', 'ProductController@getCartList');

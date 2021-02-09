@@ -1,3 +1,10 @@
+.cart-image {
+    height: 200px;
+}
+.cart-product-container {
+    margin: 20px;
+    border: 2px solid #efefef;
+}
 .img-detail {
     margin: 20px;
     height: 400px;

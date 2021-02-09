@@ -11,7 +11,7 @@
                 <a href="/">Go Back</a>
                 <section>
                     <h2>{{$product['name']}}</h2>
-                    <h3>Price: {{$product['price']}}</h3>
+                    <h3>Price: ₹{{$product['price']}}</h3>
                     <h5>Description: {{$product['description']}}</h5>
                     <h5>Category: {{$product['category']}}</h5>
                 </section>
