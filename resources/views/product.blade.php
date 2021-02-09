@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <section class="hero text-center">
-            <br><br><br><br><br><br><br>
+            <br><br><br><br><br><br><br><br>
             <a href="/products" class="btn btn-dark btn-lg">Check out our Collection</a>
         </section>
         <br>

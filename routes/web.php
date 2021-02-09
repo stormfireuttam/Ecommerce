@@ -39,3 +39,5 @@ Route::get('/cartList', 'ProductController@getCartList');
 Route::get('/removeCart/{id}', 'ProductController@removeCart');
 //Order Now
 Route::get('/orderNow', 'ProductController@orderNow');
+//Place Order
+Route::post('/placeOrder', 'ProductController@placeOrder');

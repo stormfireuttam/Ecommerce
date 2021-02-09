@@ -25,10 +25,11 @@
                 </tr>
                 </tbody>
             </table>
-            <form>
+            <form action="/placeOrder" method="POST">
+                {{ csrf_field() }}
                 <div class="mb-3">
                     <label for="address" class="form-label">Address</label>
-                    <textarea class="form-control" id="order-address" rows="3"></textarea>
+                    <textarea class="form-control" name="address" id="order-address" rows="2"></textarea>
                 </div>
                 <div class="mb-3 mx-auto">
                     <label for="payment" class="form-label">Payment Method</label>
@@ -51,7 +52,7 @@
                         </label>
                     </div>
                     <div class="form-check form-switch">
-                        <input class="form-check-input" type="radio" name="payment" value="COD" id="option4">
+                        <input class="form-check-input" type="radio" name="payment" value="Cash" id="option4">
                         <label class="form-check-label" for="option4">
                             Cash On Delivery
                         </label>
