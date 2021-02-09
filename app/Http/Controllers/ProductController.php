@@ -10,9 +10,12 @@ class ProductController extends Controller
 
     public function index()
     {
-        $data = Product::all();
         $trun_data = Product::take(4)->get();
         return view('product', compact('trun_data'));
+    }
+    public function product($id) {
+        $product = Product::find($id);
+        return view('detail', compact('product'));
     }
 //
 //    /**

@@ -1,3 +1,12 @@
+.img-detail {
+    margin: 20px;
+    height: 400px;
+}
+.detail-section {
+    margin: 20px;
+    border: 2px solid #efefef;
+    border-radius: 7px;
+}
 .slider-img {
     height: 400px !important;
 }

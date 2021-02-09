@@ -56,7 +56,7 @@
                                         <img class="img-trend" src="{{$item['image']}}"/>
                                     </a>
                                 </div>
-                                <a href="#">
+                                <a href="product/{{$item['id']}}">
                                     <h3>{{$item->name}}</h3>
                                 </a>
                                 <h5>

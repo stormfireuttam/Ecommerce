@@ -17,4 +17,4 @@ Route::get('/login', function () {
     return view('login');
 });
 Route::post('/login', 'UserController@login');
-
+Route::get('/product/{id}', 'ProductController@product');
