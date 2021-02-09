@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Numans');
 
 html,body{
-    background-size: cover;
-    background-repeat: no-repeat;
     height: 100%;
     font-family: 'Numans', sans-serif;
 }
 #login-back{
     background-image: url('images/Login_Background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 .container{
     height: 100%;

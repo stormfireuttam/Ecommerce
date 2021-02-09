@@ -1,6 +1,9 @@
 <?php
 use App\Http\Controllers\ProductController;
-$total = ProductController::getNumberOfItemsInCart();
+$total = 0;
+if (Session::has('user')) {
+    $total = ProductController::getNumberOfItemsInCart();
+}
 ?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
@@ -16,32 +19,31 @@ $total = ProductController::getNumberOfItemsInCart();
                 <li class="nav-item">
                     <a class="nav-link" href="#">Orders</a>
                 </li>
-                //Dropdown
-{{--                <li class="nav-item dropdown">--}}
-{{--                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">--}}
-{{--                        Dropdown--}}
-{{--                    </a>--}}
-{{--                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">--}}
-{{--                        <li><a class="dropdown-item" href="#">Action</a></li>--}}
-{{--                        <li><a class="dropdown-item" href="#">Another action</a></li>--}}
-{{--                        <li><hr class="dropdown-divider"></li>--}}
-{{--                        <li><a class="dropdown-item" href="#">Something else here</a></li>--}}
-{{--                    </ul>--}}
-{{--                </li>--}}
-                //Disabled Link
-{{--                <li class="nav-item">--}}
-{{--                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>--}}
-{{--                </li>--}}
-                <form class="d-flex" action="/search">
+                <form class="d-flex mx-5" action="/search">
                     <input class="form-control me-2 search-box" name="query"  placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
+
             </ul>
 
-            <ul class="navbar-nav  justify-content-end">
+            <ul class="navbar-nav justify-content-end">
                 <li class="nav-item">
                     <a class="nav-link" href="#">Cart({{$total}})</a>
                 </li>
+                @if(Session::has('user'))
+                    <li class="nav-item dropdown ml-5">
+                        <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{Session::get('user')['name']}}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                        </ul>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                @endif
             </ul>
         </div>
     </div>

@@ -16,6 +16,12 @@ Route::get('/', 'ProductController@index');
 Route::get('/login', function () {
     return view('login');
 });
+//Logout the user
+Route::get('/logout', function () {
+    Session::forget('user');
+    return redirect('/');
+});
+
 Route::post('/login', 'UserController@login');
 
 //To get to the detail page of a product
