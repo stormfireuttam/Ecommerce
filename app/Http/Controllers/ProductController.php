@@ -14,21 +14,33 @@ class ProductController extends Controller
 
     public function index()
     {
-        $trun_data = Product::take(8)->get();
+        $trun_data = Product::inRandomOrder()->take(8)->get();
         return view('product', compact('trun_data'));
     }
+
     public function show(){
-        $data = DB::table('products')->paginate(8);
-        return view('products', compact('data'));
+        $data = Product::inRandomOrder()->paginate(8);
+        $categories = DB::table('categories')->get();
+        return view('products', compact('data', 'categories'));
     }
+
+    public function showCategoryWise($name) {
+        $data = Product::where('category','like', $name)->paginate(8);
+        $categories = DB::table('categories')->get();
+        return view('products', compact('data', 'categories'));
+    }
+
+
     public function product($id) {
         $product = Product::find($id);
         return view('detail', compact('product'));
     }
+
     public function search(Request $request) {
         $data =  Product::where('name', 'like', '%'.$request->input('query').'%') -> get();
         return view('search', compact('data'));
     }
+
     public function addToCart(Request $request) {
         if ($request->session()->has('user')){
             $cart = new Cart();
@@ -41,10 +53,12 @@ class ProductController extends Controller
             return redirect("/login");
         }
     }
+
     public static function getNumberOfItemsInCart() {
         $userId = Session::get('user')['id'];
         return Cart::where('user_id', $userId)->count();
     }
+
     public function getCartList() {
         $userId = Session::get('user')['id'];
         $products = DB::table('cart')
@@ -54,10 +68,12 @@ class ProductController extends Controller
             ->get();
         return view('cartList', ['products' =>$products]);
     }
+
     public function removeCart($id) {
         Cart::destroy($id);
         return redirect('cartList');
     }
+
     public function orderNow() {
         $userId = Session::get('user')['id'];
         $total = DB::table('cart')
@@ -66,6 +82,7 @@ class ProductController extends Controller
             ->sum('products.price');
         return view('order', ['total' =>$total]);
     }
+
     public function placeOrder(Request $request) {
         $userId = Session::get('user')['id'];
         $allItems = Cart::where('user_id',$userId)->get();
@@ -84,6 +101,7 @@ class ProductController extends Controller
         $request->input();
         return redirect('/orderNow');
     }
+
     public function orders() {
         $userId = Session::get('user')['id'];
         $orders = DB::table('orders')

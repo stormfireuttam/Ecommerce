@@ -22,9 +22,9 @@
                             <h5>
                                 ₹{{$item->price}}
                             </h5>
-                            <p>
-                                {{$item->description}}
-                            </p>
+{{--                            <p>--}}
+{{--                                {{$item->description}}--}}
+{{--                            </p>--}}
                         </div>
                     </div>
                 @endforeach

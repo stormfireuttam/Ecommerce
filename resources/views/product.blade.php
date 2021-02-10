@@ -16,22 +16,22 @@
                         <div class="col-sm-3 d-flex align-items-stretch">
                             <div class="item-wrapper">
                                 <div class="img-wrapper">
-                                    <a class="button expanded add-to-cart" align="center" href="product/{{$item['id']}}">
+                                    <a class="button expanded add-to-cart" align="center" href="/product/{{$item['id']}}">
                                         View Item
                                     </a>
                                     <a href="#">
                                         <img class="img-trend" src="{{$item['image']}}"/>
                                     </a>
                                 </div>
-                                <a href="product/{{$item['id']}}">
+                                <a href="/product/{{$item['id']}}">
                                     <h3>{{$item->name}}</h3>
                                 </a>
                                 <h5>
                                     ₹{{$item->price}}
                                 </h5>
-                                <p>
-                                    {{$item->description}}
-                                </p>
+{{--                                <p>--}}
+{{--                                    {{$item->description}}--}}
+{{--                                </p>--}}
                             </div>
                         </div>
                     @endforeach

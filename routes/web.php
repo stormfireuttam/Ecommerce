@@ -39,7 +39,9 @@ Route::get('/logout', function () {
 //    $data = Product::all();
 //     return view('products', compact('data'));
 //});
-Route::get('/products', 'ProductController@show');
+Route::get('/products', 'ProductController@show')->name('products');
+Route::get('/products/{name}', 'ProductController@showCategoryWise');
+
 //To get to the detail page of a product
 Route::get('/product/{id}', 'ProductController@product');
 //To get to the search page
