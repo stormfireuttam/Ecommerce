@@ -16,13 +16,18 @@
                     <h5>Category: {{$product['category']}}</h5>
                 </section>
                 <br><br>
-                <div class="btn-group" role="group" aria-label="Basic example">
                     <form action="/add_to_cart" method="POST">
                         {{ csrf_field() }}
-                        <input type="hidden" name="product_id" value="{{$product['id']}}">
-                        <button class="btn btn-primary  px-3 m-2">Add to Cart</button>
+                        <div class="col-sm-4">
+                            <input type="button" value="-"   id="sub">
+                            <input type="text" size=2 name="quant" id="TextBox" value="1" />
+                            <input type="button"  value="+"   id="add">
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="hidden" name="product_id" value="{{$product['id']}}">
+                            <button class="btn btn-primary  px-3 m-2">Add to Cart</button>
+                        </div>
                     </form>
-{{--                    <button type="button" class="btn btn-success  px-3 m-2">Buy Now</button>--}}
                 </div>
             </div>
         </div>
