@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('content')
-    <div class="container my-4 py-3">
+    <div class="container-fluid my-4 py-3">
         <h2 align="center">Our Collection</h2><br>
 {{--        Adding Filters on Top of the Page--}}
             <div class="row justify-content-between">
@@ -46,8 +46,7 @@
         </div>
 {{--        Pagination Indexes  --}}
         <div>{{$data->links()}}</div>
-
-
+            <br><br>
         @else
             <h5>No Products Found</h5>
         @endif

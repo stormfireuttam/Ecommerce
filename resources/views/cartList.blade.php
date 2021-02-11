@@ -3,7 +3,7 @@
 @section('content')
     <div class="container py-3">
         <h2 align="center">Products Added to Cart</h2>
-        <br><br>
+
         @forelse($products->chunk(10) as $chunk)
                 @foreach($chunk as $item)
                 <div class="row cart-product-container justify-content">
@@ -28,7 +28,9 @@
             <div class="d-grid col-6 mx-auto">
                 <a class="btn btn-success btn-lg" href="/orderNow">Order now</a>
             </div>
+                    <br><br>
             @empty
+            <br><br>
                 <h3>No Products Found</h3>
             @endforelse
 

@@ -36,11 +36,21 @@ class ProductController extends Controller
     }
 
     public function search(Request $request) {
+        $this->validate($request, [
+            'query' => 'bail|required|string|max:20',
+        ]);
         $data =  Product::where('name', 'like', '%'.$request->input('query').'%') -> get();
         return view('search', compact('data'));
     }
 
     public function addToCart(Request $request) {
+
+        //Adding Validations
+        $this->validate($request, [
+            'product_id' => 'bail|required|integer',
+            'product_qty' => 'bail|required|integer'
+        ]);
+
         $originalQuantity = Product::find($request->product_id)->value('quantity');
         if ($request->product_qty > $originalQuantity) {
             return response()->json(['success'=>false,
@@ -92,6 +102,12 @@ class ProductController extends Controller
     }
 
     public function placeOrder(Request $request) {
+        //Adding Validations
+        $this->validate($request, [
+            'payment' => 'bail|required|string',
+            'address' => 'bail|required|string'
+        ]);
+
         $userId = Session::get('user')['id'];
         $allItems = Cart::where('user_id',$userId)->get();
         $productsCart=Cart::join('products','cart.product_id','=','products.id')

@@ -9,7 +9,7 @@ html,body{
     background-size: cover;
     background-repeat: no-repeat;
 }
-.container{
+.container-fluid{
     height: 100%;
     align-content: center;
 }
@@ -25,6 +25,7 @@ html,body{
 .social_icon span{
     font-size: 60px;
     margin-left: 10px;
+    margin-top: 2px;
     color: #FFC312;
 }
 
@@ -42,10 +43,14 @@ html,body{
     right: 20px;
     top: -45px;
 }
+.input-group {
+    margin: 10px 5px;
+}
 
 .input-group-prepend span{
     width: 50px;
-    padding: 10px 0 10px 10px;
+    margin-top: 0;
+    padding: 12px 0 12px 10px;
     background-color: #FFC312;
     color: black;
     border:0 !important;

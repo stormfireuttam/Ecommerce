@@ -3,90 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use SebastianBergmann\Environment\Console;
+use Validator;
 
 class UserController extends Controller
 {
-//    /**
-//     * Display a listing of the resource.
-//     *
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function index()
-//    {
-//        //
-//    }
-//
-//    /**
-//     * Show the form for creating a new resource.
-//     *
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function create()
-//    {
-//        //
-//    }
-//
-//    /**
-//     * Store a newly created resource in storage.
-//     *
-//     * @param  \Illuminate\Http\Request  $request
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function store(Request $request)
-//    {
-//        //
-//    }
-//
-//    /**
-//     * Display the specified resource.
-//     *
-//     * @param  int  $id
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function show($id)
-//    {
-//        //
-//    }
-//
-//    /**
-//     * Show the form for editing the specified resource.
-//     *
-//     * @param  int  $id
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function edit($id)
-//    {
-//        //
-//    }
-//
-//    /**
-//     * Update the specified resource in storage.
-//     *
-//     * @param  \Illuminate\Http\Request  $request
-//     * @param  int  $id
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function update(Request $request, $id)
-//    {
-//        //
-//    }
-//
-//    /**
-//     * Remove the specified resource from storage.
-//     *
-//     * @param  int  $id
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function destroy($id)
-//    {
-//        //
-//    }
 
     function login(Request $request) {
+
+        //Adding Validations
+        $validator = Validator::make($request->all(), [
+            'email' => 'bail|required|string|email|max:30',
+            'password' => 'bail|required|string',
+            // your validation here...
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/login')->withErrors($validator)->withInput();
+        }
 
         $email = $request->input('email');
         $password = $request->input('password');
@@ -104,6 +39,13 @@ class UserController extends Controller
     }
 
     function register(Request $request) {
+        //Adding Validations
+        $this->validate($request, [
+            'name' => 'bail|required|string|max:20',
+            'email' => 'bail|required|string|email|max:30',
+            'password' => 'bail|required|string',
+        ]);
+
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;

@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('content')
-    <div class="container" id="login-back">
+    <div class="container-fluid" id="login-back">
         <div class="d-flex justify-content-center h-100">
             <div class="card">
                 <div class="card-header">
@@ -15,19 +15,19 @@
                 <div class="card-body">
                     <form action="register" method="POST">
                         {{ csrf_field() }}
-                        <div class="input-group form-group">
+                        <div class="input-group form-group {{$errors->has('name') ? 'has-error': ''}}">
                             <div class="input-group-prepend">
                                 <span class="input-group-text pl-5"><i class="fas fa-user"></i></span>
                             </div>
                             <input type="text" class="form-control" name="name" placeholder="Full Name">
                         </div>
-                        <div class="input-group form-group">
+                        <div class="input-group form-group {{$errors->has('email') ? 'has-error': ''}}">
                             <div class="input-group-prepend">
-                                <span class="input-group-text pl-5 "><i class="fas fa-envelope"></i></span>
+                                <span class="input-group-text pl-5"><i class="fas fa-envelope"></i></span>
                             </div>
                             <input type="text" class="form-control" name="email" placeholder="Email">
                         </div>
-                        <div class="input-group form-group">
+                        <div class="input-group form-group {{$errors->has('password') ? 'has-error': ''}}">
                             <div class="input-group-prepend">
                                 <span class="input-group-text pl-5 "><i class="fas fa-key"></i></span>
                             </div>

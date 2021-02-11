@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('content')
-    <div class="container my-4 py-3">
+    <div class="container-fluid my-4 py-3">
         <h2 align="center">Search Results</h2>
         <div class="row mb-3">
             @forelse($data->chunk(4) as $chunk)
