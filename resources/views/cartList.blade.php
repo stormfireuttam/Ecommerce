@@ -16,6 +16,8 @@
                         <div>
                             <h2>{{$item->name}}</h2>
                             <h3>Price: ₹{{$item->price}}</h3>
+                            <h3>Quantity: {{$item->cart_qty}}</h3>
+                            <h3>Total Price: ₹{{$item->total_price}}</h3>
                         </div>
                     </div>
                     <div class="col-sm-4 my-5">

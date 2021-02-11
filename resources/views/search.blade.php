@@ -6,7 +6,7 @@
         <div class="row mb-3">
             @forelse($data->chunk(4) as $chunk)
                 @foreach($chunk as $item)
-                    <div class="col-sm-3 d-flex align-items-stretch">
+                    <div class="col-sm-3 d-flex justify-content-around">
                         <div class="item-wrapper">
                             <div class="img-wrapper">
                                 <a class="button expanded add-to-cart" align="center" href="product/{{$item['id']}}">
