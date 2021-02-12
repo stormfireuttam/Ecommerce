@@ -58,3 +58,7 @@ Route::get('/orderNow', 'ProductController@orderNow');
 Route::post('/placeOrder', 'ProductController@placeOrder');
 //View All Orders of a User
 Route::get('/myorders', 'ProductController@orders');
+
+
+//Route to send Mails to Users
+//Route::get('/send', 'mailController@send');
