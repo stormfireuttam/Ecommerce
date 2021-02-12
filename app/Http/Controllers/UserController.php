@@ -12,15 +12,14 @@ class UserController extends Controller
 
     function login(Request $request) {
 
-        //Adding Validations
-        $validator = Validator::make($request->all(), [
+        $rules = [
             'email' => 'bail|required|string|email|max:30',
             'password' => 'bail|required|string',
-            // your validation here...
-        ]);
-
+        ];
+//        Status : 400 (Server could not understand the request)
+        $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
-            return redirect('/login')->withErrors($validator)->withInput();
+            return response()->json($validator->errors(), 400);
         }
 
         $email = $request->input('email');
@@ -40,11 +39,16 @@ class UserController extends Controller
 
     function register(Request $request) {
         //Adding Validations
-        $this->validate($request, [
+        $rules = [
             'name' => 'bail|required|string|max:20',
             'email' => 'bail|required|string|email|max:30',
             'password' => 'bail|required|string',
-        ]);
+        ];
+//        Status : 400 (Server could not understand the request)
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 400);
+        }
 
         $user = new User();
         $user->name = $request->name;

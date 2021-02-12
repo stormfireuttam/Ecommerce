@@ -36,9 +36,16 @@ class ProductController extends Controller
     }
 
     public function search(Request $request) {
-        $this->validate($request, [
+        //Adding Validations
+        $rules = [
             'query' => 'bail|required|string|max:20',
-        ]);
+        ];
+        //        Status : 400 (Server could not understand the request)
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 400);
+        }
+
         $data =  Product::where('name', 'like', '%'.$request->input('query').'%') -> get();
         return view('search', compact('data'));
     }
@@ -46,10 +53,15 @@ class ProductController extends Controller
     public function addToCart(Request $request) {
 
         //Adding Validations
-        $this->validate($request, [
+        $rules = [
             'product_id' => 'bail|required|integer',
             'product_qty' => 'bail|required|integer'
-        ]);
+        ];
+        //        Status : 400 (Server could not understand the request)
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 400);
+        }
 
         $originalQuantity = Product::find($request->product_id)->value('quantity');
         if ($request->product_qty > $originalQuantity) {
@@ -103,10 +115,15 @@ class ProductController extends Controller
 
     public function placeOrder(Request $request) {
         //Adding Validations
-        $this->validate($request, [
+        $rules = [
             'payment' => 'bail|required|string',
             'address' => 'bail|required|string'
-        ]);
+        ];
+        //        Status : 400 (Server could not understand the request)
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 400);
+        }
 
         $userId = Session::get('user')['id'];
         $allItems = Cart::where('user_id',$userId)->get();
