@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
+use App\Category;
+use App\Http\Requests\CartRequest;
+use App\Http\Requests\ProductOrderRequest;
+use App\Http\Requests\ProductSearchRequest;
 use App\Product;
 use App\Cart;
 use App\Order;
@@ -14,19 +17,24 @@ class ProductController extends Controller
 
     public function index()
     {
-        $trun_data = Product::inRandomOrder()->take(8)->get();
+        $productObj = new Product();
+        $trun_data =  $productObj->index()->take(8)->get();
+
         return view('product', compact('trun_data'));
     }
 
     public function show(){
-        $data = Product::inRandomOrder()->paginate(8);
-        $categories = DB::table('categories')->get();
+        $productObj = new Product();
+        $data =  $productObj->index()->paginate(8);
+
+        $categories = Category::get();
         return view('products', compact('data', 'categories'));
     }
 
     public function showCategoryWise($name) {
-        $data = Product::where('category','like', $name)->paginate(8);
-        $categories = DB::table('categories')->get();
+        $productObj = new Product();
+        $data = $productObj->showCategoryWise($name);
+        $categories = Category::get();
         return view('products', compact('data', 'categories'));
     }
 
@@ -34,38 +42,21 @@ class ProductController extends Controller
     public function product($id) {
         $productObj = new Product();
         $product =  $productObj->findByID($id);
+
         return view('detail', compact('product'));
     }
 
-    public function search(Request $request) {
-        //Adding Validations
-        $rules = [
-            'query' => 'bail|required|string|max:20',
-        ];
-        //        Status : 400 (Server could not understand the request)
-        $validator = Validator::make($request->all(), $rules);
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 400);
-        }
+    public function search(ProductSearchRequest $request) {
+        $productObj = new Product();
+        $data =  $productObj -> search($request);
 
-        $data =  Product::where('name', 'like', '%'.$request->input('query').'%') -> get();
         return view('search', compact('data'));
     }
 
-    public function addToCart(Request $request) {
+    public function addToCart(CartRequest $request) {
+        $productObj = new Product();
+        $originalQuantity = $productObj -> findQuantity($request);
 
-        //Adding Validations
-        $rules = [
-            'product_id' => 'bail|required|integer',
-            'product_qty' => 'bail|required|integer'
-        ];
-        //        Status : 400 (Server could not understand the request)
-        $validator = Validator::make($request->all(), $rules);
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 400);
-        }
-
-        $originalQuantity = Product::find($request->product_id)->value('quantity');
         if ($request->product_qty > $originalQuantity) {
             return response()->json(['success'=>false,
                 'Product Id' => $request->product_id,
@@ -73,33 +64,29 @@ class ProductController extends Controller
                 'quantityAvailable' => $originalQuantity]);
         }
         if ($request->session()->has('user')){
-            $cart = new Cart();
-            $cart->user_id = $request->session()->get('user')['id'];
-            $cart->product_id = $request->product_id;
-            $cart->quantity = $request->product_qty;
-            $productCost = Product::where('id','=',$request->product_id)->value('price');
-            $cart->cost = $request->product_qty * $productCost;
-            $cart->save();
+            $cartObj = new Cart();
+            $cartObj->createCart($request);
             return redirect('/cartList');
         }
         else {
             return redirect("/login");
         }
-//        return $request->input();
     }
 
     public static function getNumberOfItemsInCart() {
         $userId = Session::get('user')['id'];
-        return Cart::where('user_id', $userId)->count();
+
+        $cartObj = new Cart();
+
+        return $cartObj->getItems($userId)->count();
     }
 
     public function getCartList() {
         $userId = Session::get('user')['id'];
-        $products = Cart::join('products','cart.product_id','=','products.id')
-            ->where('cart.user_id',$userId)
-            ->select('products.name as name', 'products.price as price', 'products.id as id', 'products.image as image',
-                'cart.id as cart_id', 'cart.quantity as cart_qty', 'cart.cost as total_price')
-            ->get();
+
+        $cartObj = new Cart();
+        $products = $cartObj->getCartList($userId);
+
         return view('cartList', compact('products'));
     }
 
@@ -110,40 +97,35 @@ class ProductController extends Controller
 
     public function orderNow() {
         $userId = Session::get('user')['id'];
-        $total = Cart::where('cart.user_id',$userId)
-            ->sum('cart.cost');
+
+        $cartObj = new Cart();
+        $total = $cartObj->getTotalCost($userId);
+
         return view('order', ['total' =>$total]);
     }
 
-    public function placeOrder(Request $request) {
-        //Adding Validations
-        $rules = [
-            'payment' => 'bail|required|string',
-            'address' => 'bail|required|string'
-        ];
-        //        Status : 400 (Server could not understand the request)
-        $validator = Validator::make($request->all(), $rules);
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 400);
-        }
+    public function placeOrder(ProductOrderRequest $request) {
 
         $userId = Session::get('user')['id'];
-        $allItems = Cart::where('user_id',$userId)->get();
-        $productsCart=Cart::join('products','cart.product_id','=','products.id')
-            ->where('cart.user_id',$userId)
-            ->select('products.*', 'products.quantity as originalQuantity','cart.*','cart.id as cart_id', 'cart.quantity as cart_qty')
-            ->get();
+
+        $cartObj = new Cart();
+        $allItems = $cartObj->getItems($userId)->get();
+
+        $productsCart = $cartObj->getCartList($userId);
+
         $array_Quantity = array();
         $idx = 0;
+
         foreach ($productsCart as $item)
         {
             $array_Quantity = array_add($array_Quantity, $idx, $item->cart_qty);
             $idx += 1;
             $leftQuantity = $item->originalQuantity - $item->cart_qty;
-            Product::where('id', $item->product_id)
-                ->limit(1)
-                ->update(array('quantity' => $leftQuantity));
+
+            $productObj = new Product();
+            $productObj->updateQuantity($item, $leftQuantity);
         }
+
         $idForOrder = rand(1999,9999).array_rand(["A","B","C","D","E"]).rand(200,500);
         $idx = 0;
         foreach ($allItems as $item)
