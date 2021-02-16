@@ -4,6 +4,8 @@ namespace App;
 
 use App\Http\Requests\CartRequest;
 use Illuminate\Database\Eloquent\Model;
+use phpDocumentor\Reflection\DocBlock\Tags\See;
+use phpDocumentor\Reflection\Types\Self_;
 
 class Cart extends Model
 {
@@ -37,5 +39,9 @@ class Cart extends Model
     public function getTotalCost($userId) {
         return self::where('cart.user_id',$userId)
             ->sum('cart.cost');
+    }
+
+    public function destroyCart($userId) {
+        self::where('user_id','=', $userId)->delete();
     }
 }
