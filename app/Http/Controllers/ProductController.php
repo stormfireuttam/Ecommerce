@@ -9,7 +9,6 @@ use App\Product;
 use App\Cart;
 use App\Order;
 use Session;
-use Illuminate\Support\Facades\DB;
 use Validator;
 
 class ProductController extends Controller
@@ -115,7 +114,6 @@ class ProductController extends Controller
 
         $array_Quantity = array();
         $idx = 0;
-
         foreach ($productsCart as $item)
         {
             $array_Quantity = array_add($array_Quantity, $idx, $item->cart_qty);
@@ -125,7 +123,6 @@ class ProductController extends Controller
             $productObj = new Product();
             $productObj->updateQuantity($item, $leftQuantity);
         }
-
         $idForOrder = rand(1999,9999).array_rand(["A","B","C","D","E"]).rand(200,500);
         $idx = 0;
         foreach ($allItems as $item)
@@ -141,19 +138,16 @@ class ProductController extends Controller
             $order->payment_status = 'Pending';
             $order->address =  $request->address;
             $order->save();
-            Cart::where('user_id',$userId)->delete();
+            $cartObj->destroyCart($userId);
         }
-        $request->input();
         return redirect('/orderNow');
     }
 
     public function orders() {
         $userId = Session::get('user')['id'];
-        $orders = DB::table('orders')
-            ->join('products','orders.product_id','=','products.id')
-            ->where('orders.user_id',$userId)
-            ->select('*', 'orders.quantity as qty')
-            ->get();
+
+        $orderObj = new Order();
+        $orders = $orderObj->getOrders($userId);
         $orderId = 0;
         foreach ($orders as $order)
         {
