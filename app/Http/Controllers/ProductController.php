@@ -7,6 +7,7 @@ use App\Cart;
 use App\Order;
 use Session;
 use Illuminate\Support\Facades\DB;
+use Validator;
 
 class ProductController extends Controller
 {
@@ -31,7 +32,8 @@ class ProductController extends Controller
 
 
     public function product($id) {
-        $product = Product::find($id);
+        $productObj = new Product();
+        $product =  $productObj->findByID($id);
         return view('detail', compact('product'));
     }
 
